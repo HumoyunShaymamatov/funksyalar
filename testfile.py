@@ -146,15 +146,67 @@ def paskal(son):
         mylist = [1, 1]
     else:
         mylist = [1, 1]
-        while son >= raqam:
+        while son >= raqam: # son = 3
             index = 0
-            temp = []
-            temp.append(1)
-            while index <= len(mylist)-2:
+            temp = [1]
+            while index < len(mylist)-1:
                 new = mylist[index] + mylist[index + 1]
-                temp.append(new)
+                temp.append(new)  # temp = [1,2]
                 index += 1
-            temp.append(1)
+            temp.append(1) # temp = [1,2,1]
             mylist = temp
             raqam += 1
     return mylist
+
+# print(paskal(6))
+
+# def intostr(integ):
+#     if type(integ) == int or type(integ) == float or type(integ) == bool:
+#         integ = str(integ)
+#     return integ
+#
+# print(type(intostr(3)))
+
+def diskriminant(a, b, c):
+    d = b**2 - 4 * a * c
+    return d
+def x1_2(a, b, c, ):
+    if diskriminant(a, b, c) >= 0:
+        d = math.sqrt(diskriminant(a, b, c))
+        x1 = (-b - d)/ (2*a)
+        x2 = (-b + d)/ 2*a
+        x0 = (-b)/2*a
+        y0 = (-d*d)/4*a
+        vertex = (x0, y0)
+        natija = f'>>> x1 = {x1}\n>>> x2 = {x2}\n>>> vertex = {vertex}'
+        return natija
+    else:
+        return "diskriminant manfiy"
+
+# print(x1_2(1, 4, -5))
+
+a = [1, 3]
+b = [0, 5]
+
+def linear_function(list1, list2):
+    slope = (list2[1] - list1[1])/(list2[0] - list1[0])
+    b = list1[1] - slope * list1[0]
+    if slope%1 == 0:
+        slope = int(slope)
+    if b % 1 == 0:
+        b = int(b)
+    return f'>>> y={slope}x + {b}'
+print(linear_function(a,b))
+    
+
+
+
+
+
+
+
+
+
+
+
+

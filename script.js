@@ -61,38 +61,23 @@
 //   console.log(`Day ${i} went as expected`);
 // }
 
-// son topish
-// function fibonacci(son) {
-//   let sonlar = [];
-//   if (son === 1) {
-//     sonlar.push(0);
-//   }
-//   if (son === 2) {
-//     sonlar.push(0, 1);
-//   } else {
-//     sonlar.push(0, 1);
-//     for (let i = 3; i < son; i++) {
-//       sonlar.push(sonlar[sonlar.length - 1] + sonlar[sonlar.length - 2]);
-//     }
-//   }
-//   return sonlar;
-// }
-// console.log(fibonacci(1));
-// console.log(fibonacci(2));
-// console.log(fibonacci(5));
+function fibonacci(son) {
+  let sonlar = [];
+  if (son === 1) {
+    sonlar.push(0);
+  }
+  if (son === 2) {
+    sonlar.push(0, 1);
+  } else {
+    sonlar.push(0, 1);
+    for (let i = 3; i < son; i++) {
+      sonlar.push(sonlar[sonlar.length - 1] + sonlar[sonlar.length - 2]);
+    }
+  }
+  return sonlar;
+}
+
 // console.log(fibonacci(50));
-//const javob = Math.floor(Math.random() * 5 + 1);
-//let tahmin = prompt("sonni kiriting");
-//while (true) {
-//  if (tahmin > javob) {
-//    tahmin = prompt("Men oylagan son bundan kichik");
-//  } else if (javob > tahmin) {
-//    tahmin = prompt("Men o`ylagan son bundan katta");
-//  } else {
-//    alert("Siz yutdingiz");
-//    break;
-//  }
-//}
 
 const tubmi = function (son) {
   let tub = true;
@@ -109,26 +94,9 @@ const tubmi = function (son) {
   return tub;
 };
 
-// console.log(tubmi(0));
-// console.log(tubmi(2));
-// console.log(tubmi(3));
-// console.log(tubmi(4));
-// console.log(tubmi(5));
-// console.log(tubmi(50));
 // console.log(tubmi(37));
 // console.log(tubmi(101));
-// console.log(tubmi(111));
 // console.log(tubmi(31546641441));
-// def tubsonchi(son):
-//     eratosfen_galviri= []
-//     tub = 1
-//     while len(eratosfen_galviri) < son:
-//         if tubmi(tub):
-//             eratosfen_galviri.append(tub)
-//             tub +=1
-//         else:
-//             tub +=1
-//     return eratosfen_galviri
 
 const tubsonchi = function (son) {
   const eratosfenGalviri = [];
@@ -144,5 +112,74 @@ const tubsonchi = function (son) {
   return eratosfenGalviri;
 };
 
-const tubSonlarJadvali = tubsonchi(1000);
-console.log(tubSonlarJadvali);
+// const tubSonlarJadvali = tubsonchi(1000);
+// console.log(tubSonlarJadvali);
+
+// const arr = [3, 4, 6, 9];
+// const arrCopy = [...arr];
+// arrCopy[3] = 56;
+// console.log(arr, arrCopy);
+
+function ekubLight(son1, son2) {
+  const sonlar = [];
+  if (son1 > son2) {
+    sonlar.push(son1);
+    sonlar.push(son2);
+  } else {
+    sonlar.push(son2, son1);
+  }
+  if (sonlar[0] % sonlar[1] === 0) {
+    return sonlar[1];
+  }
+  while (sonlar[0] % sonlar[1] !== 0) {
+    let qoldiq = sonlar[0] % sonlar[1];
+    sonlar[0] = sonlar[1];
+    sonlar[1] = qoldiq;
+  }
+  return sonlar[1];
+}
+
+const ekub = function (...sonlar) {
+  const sonlarNew = [];
+  while (true) {
+    while (sonlar.length !== 1 && sonlar.length !== 0) {
+      const ekubNew = ekubLight(sonlar.shift(), sonlar.pop());
+      sonlarNew.push(ekubNew);
+    }
+    if (sonlar.length === 1) {
+      sonlarNew.push(sonlar.pop(0));
+    }
+    if (sonlarNew.length !== 1) {
+      sonlar = sonlarNew;
+    } else {
+      break;
+    }
+  }
+  return sonlarNew[0];
+};
+
+// const mylist = [32, 464, 80, 176];
+// console.log(ekub(...mylist));
+
+// const message = "boarding door, boarding door";
+// console.log(message.replace(/door/g, "gate"));
+
+// def linear_function(list1, list2):
+//     slope = (list2[1] - list1[1])/(list2[0] - list1[0])
+//     b = list1[1] - slope * list1[0]
+//     if slope%1 == 0:
+//         slope = int(slope)
+//     if b % 1 == 0:
+//         b = int(b)
+//     return f'y={slope}x + {b}'
+// print(linear_function(a,b))
+
+function linearFunction(l1, l2) {
+  let slope = (l2[1] - l1[1]) / (l2[0] - l1[0]);
+  const b = l1[1] - slope * l1[0];
+  if (slope === 1) slope = "";
+  if (slope % 1 !== 0) slope = `(${l2[1] - l1[1]}/${l2[0] - l1[0]})`;
+  return `y = ${slope}x ${b >= 0 ? `+ ${b}` : `- ${Math.abs(b)}`}`;
+}
+
+console.log(linearFunction([0, 1], [1, 6]));
